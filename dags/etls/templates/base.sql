@@ -1,1 +1,1 @@
-select * from xxx where id in  ({% block cond %}{% endblock %}) and cron_date = {{ execution_time | ds }}
+select * from xxx where id in  ({% block cond %}{% endblock %}) and cron_date = {{ dag_run.logical_date | ts }}
