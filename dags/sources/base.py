@@ -27,10 +27,6 @@ class Source(Templater):
 
         return self.msg
 
-    def render(self):
-        self.resolve_template_files()
-
-
     def close(self):
         pass
     
