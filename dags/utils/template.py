@@ -1,6 +1,17 @@
 from jinja2 import Environment, FileSystemLoader
 from airflow.templates import FILTERS
 
+from typing import Sequence
+
+class Templater():
+
+    template_fields: Sequence[str] = ()
+    template_ext: str = ""
+
+    def render(self, context: dict):
+        for f in self.template_fields:
+            setattr(self, f, render_text(getattr(self, f), **context))
+
 def render_file(filepath, context):
     temp = filepath.split("/")
     dir = "/".join(temp[:-1])

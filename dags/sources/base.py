@@ -1,7 +1,8 @@
 import logging
-from typing import Sequence
 
-from airflow.template.templater import Templater
+from airflow.utils.context import Context
+
+from utils.template import Templater
 
 class Source(Templater):
 
@@ -12,7 +13,7 @@ class Source(Templater):
         self.msg = ""
         self.logger = logging.getLogger()
     
-    def get(self, context, *args, **kwargs):
+    def get(self, context: Context, *args, **kwargs):
         return None
     
     def has_next(self):
@@ -25,6 +26,10 @@ class Source(Templater):
             self.msg = "Retrieving `{}` amount of data.".format(self.data_count)
 
         return self.msg
+
+    def render(self):
+        self.resolve_template_files()
+
 
     def close(self):
         pass
