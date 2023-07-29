@@ -8,7 +8,7 @@ from utils.time import date_jkt
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
 with DAG(
-    "tutorial",
+    "tutorial2",
     default_args={
         "depends_on_past": False,
         "email": ["airflow@example.com"],
@@ -18,7 +18,7 @@ with DAG(
         "retry_delay": timedelta(minutes=5),
     },
     description="A simple tutorial DAG",
-    schedule="5 1 * * *",
+    schedule="7 1 * * *",
     start_date=date_jkt(2023,7,23),
     catchup=True,
     tags=["example"],
@@ -27,7 +27,7 @@ with DAG(
     # t1, t2 and t3 are examples of tasks created by instantiating operators
     t1 = BashOperator(
         task_id="print_date",
-        bash_command="date",
+        bash_command="echo {{ execution_date  | ts }}",
     )
 
     t2 = BashOperator(
@@ -65,5 +65,3 @@ with DAG(
         depends_on_past=False,
         bash_command=templated_command,
     )
-
-    t1 >> [t2, t3]
