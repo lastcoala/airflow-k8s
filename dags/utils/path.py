@@ -1,4 +1,6 @@
 import os
 
 def path(path):
-    return os.path.join(os.path.dirname(__file__), "..", path)
+    curdir = os.path.dirname(__file__)
+    temp = "/".join(curdir.split("/")[:-1])
+    return os.path.join(temp, path)
