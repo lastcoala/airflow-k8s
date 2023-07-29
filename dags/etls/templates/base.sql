@@ -1,0 +1,1 @@
+select * from xxx where id in  ({% block cond %}{% endblock %})

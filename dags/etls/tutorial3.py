@@ -7,6 +7,9 @@ from utils.time import date_jkt
 from utils.path import path
 
 from operators.bigquery_operator import HelloOperator
+from operators.generic_operator import GenericOperator
+
+from sources.postgres import PostgresSource
 
 with DAG(
     "tutorial3",
@@ -30,3 +33,6 @@ with DAG(
         sql=path("etls/templates/user.sql "),
         config={"ds": "{{ ds }}"}
     )
+
+    source = PostgresSource(sql="select * from mysql where dt = '{{ ds }}'")
+    t2 = GenericOperator(task_id="get_xx", source=source)
