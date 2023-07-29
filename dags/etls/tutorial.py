@@ -32,7 +32,7 @@ with DAG(
         # 'trigger_rule': 'all_success'
     },
     description="A simple tutorial DAG",
-    schedule=timedelta(days=1),
+    schedule="5 1 * * *",
     start_date=date_jkt(2023,7,23),
     catchup=True,
     tags=["example"],
