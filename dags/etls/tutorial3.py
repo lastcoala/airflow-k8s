@@ -28,4 +28,5 @@ with DAG(
     t1 = HelloOperator(
         task_id="print_date",
         sql=path("etls/templates/user.sql "),
+        config={"ds": "{{ ds }}"}
     )
