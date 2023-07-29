@@ -33,6 +33,8 @@ class GenericOperator(BaseOperator):
             data_count_total = 0
             while self.source.has_next():
                 self.log.info("Retrieving data")
+                
+                self.source.render(new_ctx)
                 input = self.source.get(new_ctx)
 
                 self.log.info("Processing data")

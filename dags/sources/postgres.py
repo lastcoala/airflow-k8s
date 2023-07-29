@@ -11,5 +11,4 @@ class PostgresSource(Source):
         self.sql = sql
     
     def get(self, context, *args, **kwargs):
-        self.render(context)
         print(self.sql)
