@@ -6,8 +6,8 @@ from airflow import DAG
 from utils.time import date_jkt
 from utils.path import path
 
-# Operators; we need this to operate!
-from airflow.operators.bash import BashOperator
+from operators.bigquery_operator import HelloOperator
+
 with DAG(
     "tutorial3",
     default_args={
@@ -25,7 +25,7 @@ with DAG(
     tags=["example"],
 ) as dag:
 
-    t1 = BashOperator(
+    t1 = HelloOperator(
         task_id="print_date",
-        bash_command=path("etls/templates/cmd.bash "),
+        sql=path("etls/templates/user.sql "),
     )

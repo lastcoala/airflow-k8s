@@ -1,0 +1,1 @@
+select * from user where updated_at = "{{ ds }}"
