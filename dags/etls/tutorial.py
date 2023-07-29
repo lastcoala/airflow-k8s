@@ -3,6 +3,7 @@ from textwrap import dedent
 
 # The DAG object; we'll need this to instantiate a DAG
 from airflow import DAG
+from utils.time import date_jkt
 
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
@@ -32,8 +33,8 @@ with DAG(
     },
     description="A simple tutorial DAG",
     schedule=timedelta(days=1),
-    start_date=datetime(2023, 7, 28),
-    catchup=False,
+    start_date=date_jkt(2023,7,23),
+    catchup=True,
     tags=["example"],
 ) as dag:
 
