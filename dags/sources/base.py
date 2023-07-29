@@ -6,12 +6,13 @@ from utils.template import Templater
 
 class Source(Templater):
 
-    def __init__(self):
+    def __init__(self, tmpl_args: dict = {}):
         self.data_count = 0
         self.counter = 0
         self.next = True
         self.msg = ""
         self.logger = logging.getLogger()
+        self.tmpl_args = tmpl_args
     
     def get(self, context: Context, *args, **kwargs):
         return None
@@ -26,6 +27,10 @@ class Source(Templater):
             self.msg = "Retrieving `{}` amount of data.".format(self.data_count)
 
         return self.msg
+
+    def render(self, context):
+        result = {**context, **self.tmpl_args}
+        super().render(result)
 
     def close(self):
         pass
