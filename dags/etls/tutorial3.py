@@ -27,5 +27,5 @@ with DAG(
 
     t1 = BashOperator(
         task_id="print_date",
-        bash_command=path("etls/templates/cmd.sh "),
+        bash_command=path("etls/templates/cmd.bash "),
     )

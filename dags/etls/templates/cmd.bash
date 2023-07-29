@@ -1,1 +1,1 @@
-echo "{{ ds }}"
+echo "{{ execution_time | ds }}"
