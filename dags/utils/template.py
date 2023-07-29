@@ -10,7 +10,14 @@ class Templater():
 
     def render(self, context: dict):
         for f in self.template_fields:
-            setattr(self, f, render_text(getattr(self, f), context))
+            tmp = getattr(self, f)
+            if self.template_ext != "":
+                if self.template_ext in tmp:
+                    setattr(self, f, render_file(tmp, context))
+                else:
+                    setattr(self, f, render_text(tmp, context))
+            else:
+                setattr(self, f, render_text(tmp, context))
 
 def render_file(filepath, context):
     temp = filepath.split("/")

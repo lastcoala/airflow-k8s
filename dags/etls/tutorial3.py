@@ -34,5 +34,5 @@ with DAG(
         config={"ds": "{{ ds }}"}
     )
 
-    source = PostgresSource(sql="select * from mysql where dt = '{{ ds }}'")
+    source = PostgresSource(sql=path("etls/templates/user.sql"))
     t2 = GenericOperator(task_id="get_xx", source=source)
